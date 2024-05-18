@@ -41,11 +41,12 @@ function App() {
   function handleClick() {
     let sum1 = Object.values(inputs).reduce((acc, item) => acc += +item, 0)
     let sum2 = Object.values(inputs2).reduce((acc, item) => acc += +item, 0)
-    const totalInputs = Object.keys(inputs).length + Object.keys(inputs2).length;
-    setTotal((((((sum1 + sum2) / totalInputs)) * 3) + +state.serbest) + (10 - (state.qayib * 0.3)))
+    let subSum1 = sum1 / Object.keys(inputs).length
+    let subSum2 = sum2 / Object.keys(inputs2).length
+    setTotal(((((subSum1 + subSum2) / 2) * 3) + +state.serbest) + (10 - (state.qayib * 0.3)))
   }
   let arr = []
-  for (let i = 1; i <= 10; i++) {
+  for (let i = 0; i <= 10; i++) {
     arr.push(i)
   }
   return (
@@ -53,8 +54,7 @@ function App() {
       <div className="">
         <h2 c>BDU Bal Hesablama</h2>
         <p className=''>Laboratoriya sayı</p>
-        <select className='rounded-2 ' onChange={handleSelect}>
-          <option>Select</option>
+        <select className='rounded-2 px-2' onChange={handleSelect}>
           {arr.map((item, index) => {
             return (
               <option key={index}>{item}</option>
@@ -68,9 +68,8 @@ function App() {
           </div>
         ))}
         <div className="">
-          <p className=''>Kollekvium balı</p>
-          <select className='rounded-2 ' onChange={handleSelect2}>
-            <option>Select</option>
+          <p className=''>Kollekvium sayı</p>
+          <select className='rounded-2 px-2' onChange={handleSelect2}>
             {arr.map((item, index) => {
               return (
                 <option key={index}>{item}</option>
